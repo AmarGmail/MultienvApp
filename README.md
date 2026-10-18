@@ -25,7 +25,11 @@ multienv/
     └── .env
 ```
 
-Due to time constraint one mongo db container used for both Prod and Dev endpoints.
+Due to time constraint one mongo db container used for both Prod and Dev environments.
+
+FrontEnd service is deployed with a dependency to backend Dev and backend Prod environments in [docker-compose.yml](docker-compose.yml)
+
+Both backend Dev and Prod services deployment depends on MongoDB serviceand wait for MongoDB to passes its health check before starting the services.
 
 ### Backend Development Deployment
 
