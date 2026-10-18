@@ -1,0 +1,45 @@
+
+services:
+  mongo:
+    image: mongo:7
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  backend-dev:
+    build: ./backend/dev
+    ports:
+      - "3001:3001"
+    environment:
+      MONGO_URI: mongodb://mongo:27017/devdb
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+  backend-prod:
+    build: ./backend/prod
+    ports:
+      - "3002:3002"
+    environment:
+      MONGO_URI: mongodb://mongo:27017/proddb
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      HOST: 0.0.0.0
+      BROWSER: none
+    depends_on:
+      - backend-dev
+      - backend-prod
+
+volumes:
+  mongo_data:
