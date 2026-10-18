@@ -1,4 +1,4 @@
-# MultiEnv Ticket Management System
+# MultiEnv Ticket Management System using Docker Compose
 
 A full-stack application using Flask for both frontend and backend services, demonstrating environment-specific ticket management.
 
@@ -25,38 +25,56 @@ multienv/
     └── .env
 ```
 
-## Environment Configuration
+Due to time constraint one mongo db container used for both Prod and Dev endpoints.
 
-### Backend Development Environment (.env)
+### Backend Development Deployment
+
+![Development environment](Screentshots/Dev-UI.png)
+![Devlopment Service logs](Screentshots/Dev-env-Service-logs.png)
+![Development UI via FrontEnd](Screentshots/Dev-Env.png)
+
+
+### Backend Production Environment 
+![Production environment](Screentshots/Production-UI.png)
+![Production Service Logs](Screentshots/Prod-Env-Service-logs.png)
+![Production env via FrontEnd](Screentshots/Prod-env.png)
+
+
+### CLI 
+
+```CLI service validation after the deployment
 ```
-PORT=3001
-MONGO_URI=your_dev_mongodb_uri
+![CLI validation](Screentshots/Services-validation.png)
+
 ```
-
-### Backend Production Environment (.env)
+docker compose up --build -d
 ```
-PORT=3002
-MONGO_URI=your_prod_mongodb_uri
+![Docker compose build](Screentshots/Docker-Compose-up-build-d.png)
+
 ```
-
-
-
-### Requirements
+docker ps
 ```
-flask==2.0.1
-flask-cors==3.0.10
-python-dotenv==0.19.0
-pymongo==3.12.0
-requests==2.26.0
+![Docker ps](Screentshots/docker-containers-ps.png)
+
 ```
-
-
-
-### Using Docker Compose
-```bash
-docker-compose up
+MongoDB deployment logs
 ```
+![MongoDB logs](Screentshots/Mongo-db-logs.png)
 
+```
+Production Service logs
+```
+![Production service logs](Screentshots/Prod-Env-Service-logs.png)
+
+```
+Development Service logs
+```
+![Developemtn Service logs](Screentshots/Dev-env-Service-logs.png)
+
+```
+Application FrontEnd
+```
+![Application ErontEnd](Screentshots/Apps-Frontend.png)
 ## Accessing the Application
 
 - Frontend: http://localhost:3000/
@@ -65,11 +83,6 @@ docker-compose up
 
 
 
-## Security Considerations
 
-- Never commit `.env` files to version control
-- Use different MongoDB databases for dev and prod
-- Implement proper authentication
-- Use secure headers
 
 
