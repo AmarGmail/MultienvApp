@@ -1,0 +1,8 @@
+Student-name: Amarjyoti Lahkar
+Repo URL: https://github.com/AmarGmail/MultienvApp/
+Deployment Status: Completed (local)
+ACCESS URLS:
+Frontend: http://localhost:3000
+Development: http://localhost:3001
+Production: http://localhost:3002
+Date-of-Submission: 18Oct 2006
